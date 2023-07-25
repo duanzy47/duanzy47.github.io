@@ -1,4 +1,4 @@
-baseURL = 'https://duanzy47.github.io/github_pages/'
+baseURL = 'https://duanzy47.github.io/'
 languageCode = 'en-us'
 title = 'Maison Hatoyama'
 theme = "PaperMod"
