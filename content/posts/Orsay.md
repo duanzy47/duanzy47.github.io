@@ -6,5 +6,10 @@ draft: false
 
 印象派画家生平总览
 
-<iframe width="100%" height="600" frameborder="0" scrolling="no" src="/img/plot.html"></iframe>
+{{< rawhtml >}}
+<link rel="stylesheet" href="/css/custom.css">
+{{< /rawhtml >}}
 
+<div class="iframe-container">
+    <iframe src="/img/plot.html" frameborder="0"></iframe>
+</div>
