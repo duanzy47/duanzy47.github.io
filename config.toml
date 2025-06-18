@@ -4,7 +4,11 @@ title = 'Maison Hatoyama'
 theme = "PaperMod"
 disqusShortname = "julian-10"
 
+[params]
+  disableSpecial1stPost = true
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
