@@ -1,13 +1,602 @@
+/* Windows 98 Retro Theme */
+
+:root {
+    /* Windows 98 System Colors */
+    --win98-bg: #c0c0c0;
+    --win98-surface: #c0c0c0;
+    --win98-sunken-outer: #808080;
+    --win98-sunken-inner: #404040;
+    --win98-raised-outer: #dfdfdf;
+    --win98-raised-inner: #ffffff;
+    --win98-window-frame: #008080;
+    --win98-dialog-blue: #000080;
+    --win98-text: #000000;
+    --win98-text-white: #ffffff;
+    --win98-text-disabled: #808080;
+    --win98-yellow: #ffff00;
+    --win98-green: #008000;
+    --win98-red: #ff0000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--win98-bg);
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    color: var(--win98-text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+/* Window Frame Styles */
+.window {
+    background: var(--win98-surface);
+    border-left: 2px solid var(--win98-raised-outer);
+    border-top: 2px solid var(--win98-raised-outer);
+    border-right: 2px solid var(--win98-sunken-outer);
+    border-bottom: 2px solid var(--win98-sunken-outer);
+    box-shadow: 1px 1px 0px 1px var(--win98-sunken-inner);
+    margin: 10px;
+    min-height: 200px;
+}
+
+/* Title Bar */
+.title-bar {
+    background: linear-gradient(90deg, var(--win98-dialog-blue) 0%, #1084d0 100%);
+    color: var(--win98-text-white);
+    font-weight: bold;
+    padding: 2px 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+}
+
+.title-bar-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.title-bar-controls {
+    display: flex;
+}
+
+.title-bar-control {
+    width: 16px;
+    height: 14px;
+    margin-left: 2px;
+    background: var(--win98-surface);
+    border-left: 1px solid var(--win98-raised-outer);
+    border-top: 1px solid var(--win98-raised-outer);
+    border-right: 1px solid var(--win98-sunken-outer);
+    border-bottom: 1px solid var(--win98-sunken-outer);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: var(--win98-text);
+    cursor: pointer;
+}
+
+/* Button Styles */
+.btn {
+    background: var(--win98-surface);
+    border-left: 2px solid var(--win98-raised-outer);
+    border-top: 2px solid var(--win98-raised-outer);
+    border-right: 2px solid var(--win98-sunken-outer);
+    border-bottom: 2px solid var(--win98-sunken-outer);
+    padding: 4px 8px;
+    font-family: inherit;
+    font-size: 11px;
+    color: var(--win98-text);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 2px;
+}
+
+.btn:active, .btn:focus {
+    border-left: 2px solid var(--win98-sunken-inner);
+    border-top: 2px solid var(--win98-sunken-inner);
+    border-right: 2px solid var(--win98-raised-outer);
+    border-bottom: 2px solid var(--win98-raised-outer);
+}
+
+/* Input Field Styles */
+.text-input, input[type="text"], input[type="email"], input[type="password"], textarea {
+    background: white;
+    border-left: 2px solid var(--win98-sunken-outer);
+    border-top: 2px solid var(--win98-sunken-outer);
+    border-right: 2px solid var(--win98-raised-outer);
+    border-bottom: 2px solid var(--win98-raised-outer);
+    box-shadow: inset -1px -1px 0px 0px var(--win98-sunken-inner);
+    padding: 4px;
+    font-family: inherit;
+    font-size: 11px;
+    color: var(--win98-text);
+}
+
+/* Menu Bar */
+.menu-bar {
+    background: var(--win98-surface);
+    border-bottom: 1px solid var(--win98-sunken-outer);
+    padding: 2px;
+}
+
+.menu-item {
+    display: inline-block;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.menu-item:hover {
+    background: var(--win98-dialog-blue);
+    color: var(--win98-text-white);
+}
+
+/* Status Bar */
+.status-bar {
+    background: var(--win98-surface);
+    border-top: 1px solid var(--win98-sunken-outer);
+    padding: 4px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+}
+
+.status-field {
+    border-left: 1px solid var(--win98-sunken-outer);
+    border-top: 1px solid var(--win98-sunken-outer);
+    border-right: 1px solid var(--win98-raised-outer);
+    border-bottom: 1px solid var(--win98-raised-outer);
+    padding: 2px 4px;
+    margin-right: 4px;
+}
+
+/* Content Area */
+.window-body {
+    padding: 8px;
+    background: var(--win98-surface);
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    color: var(--win98-text);
+    margin: 8px 0 4px 0;
+}
+
+h1 { font-size: 16px; font-weight: bold; }
+h2 { font-size: 14px; font-weight: bold; }
+h3 { font-size: 12px; font-weight: bold; }
+h4, h5, h6 { font-size: 11px; font-weight: bold; }
+
+/* Links */
+a {
+    color: var(--win98-dialog-blue);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #800080;
+}
+
+/* List Styles */
+ul, ol {
+    margin: 4px 0;
+    padding-left: 20px;
+}
+
+li {
+    margin: 2px 0;
+}
+
+/* Panel/Fieldset */
+.fieldset, fieldset {
+    border-left: 2px solid var(--win98-sunken-outer);
+    border-top: 2px solid var(--win98-sunken-outer);
+    border-right: 2px solid var(--win98-raised-outer);
+    border-bottom: 2px solid var(--win98-raised-outer);
+    padding: 8px;
+    margin: 8px 0;
+    background: var(--win98-surface);
+}
+
+.fieldset legend, fieldset legend {
+    background: var(--win98-surface);
+    padding: 0 4px;
+    font-weight: bold;
+}
+
+/* Desktop/Body styling */
+html, body {
+    height: 100%;
+    background: #008080;
+    background-image: 
+        radial-gradient(circle at 25% 25%, #40c0c0 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, #40c0c0 0%, transparent 50%);
+    background-size: 32px 32px;
+}
+
+/* Main content wrapper */
+#main-content {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: var(--win98-surface);
+    border-left: 2px solid var(--win98-raised-outer);
+    border-top: 2px solid var(--win98-raised-outer);
+    border-right: 2px solid var(--win98-sunken-outer);
+    border-bottom: 2px solid var(--win98-sunken-outer);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Blog post styling */
+.post {
+    background: white;
+    border-left: 2px solid var(--win98-sunken-outer);
+    border-top: 2px solid var(--win98-sunken-outer);
+    border-right: 2px solid var(--win98-raised-outer);
+    border-bottom: 2px solid var(--win98-raised-outer);
+    margin: 16px;
+    padding: 16px;
+}
+
+.post-title {
+    background: var(--win98-surface);
+    border-left: 1px solid var(--win98-raised-outer);
+    border-top: 1px solid var(--win98-raised-outer);
+    border-right: 1px solid var(--win98-sunken-outer);
+    border-bottom: 1px solid var(--win98-sunken-outer);
+    padding: 4px 8px;
+    margin: -16px -16px 12px -16px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.post-meta {
+    color: var(--win98-text-disabled);
+    font-size: 10px;
+    margin-bottom: 12px;
+}
+
+/* Code blocks */
+pre, code {
+    background: black;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    border: 2px inset var(--win98-surface);
+    padding: 8px;
+    font-size: 10px;
+    overflow-x: auto;
+}
+
+code {
+    padding: 2px 4px;
+    display: inline;
+}
+
+/* Images */
+img {
+    border: 2px solid var(--win98-sunken-outer);
+    max-width: 100%;
+    height: auto;
+}
+
+.figure {
+    background: var(--win98-surface);
+    border-left: 2px solid var(--win98-raised-outer);
+    border-top: 2px solid var(--win98-raised-outer);
+    border-right: 2px solid var(--win98-sunken-outer);
+    border-bottom: 2px solid var(--win98-sunken-outer);
+    padding: 8px;
+    margin: 12px 0;
+    text-align: center;
+}
+
+.figure img {
+    border: 1px solid var(--win98-sunken-inner);
+    margin-bottom: 4px;
+}
+
+.figure figcaption {
+    font-size: 10px;
+    color: var(--win98-text-disabled);
+    font-style: italic;
+}
+
+/* Keep original iframe styling */
 .iframe-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Aspect ratio for 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
+    border: 2px inset var(--win98-surface);
+    margin: 8px 0;
 }
+
 .iframe-container iframe {
     position: absolute;
-    top: 0;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border: none;
+}
+
+/* Desktop and Taskbar */
+#desktop {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.taskbar {
+    position: fixed;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    height: 28px;
+    background: var(--win98-surface);
+    border-top: 1px solid var(--win98-raised-outer);
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    z-index: 1000;
+}
+
+.start-button {
+    height: 22px;
+    font-size: 11px;
+    margin-right: 4px;
+    padding: 2px 6px;
+}
+
+.taskbar-programs {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0 4px;
+}
+
+.taskbar-program {
+    height: 22px;
+    margin-right: 2px;
+    padding: 2px 8px;
+    font-size: 11px;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.taskbar-program.active {
+    border-left: 2px solid var(--win98-sunken-inner);
+    border-top: 2px solid var(--win98-sunken-inner);
+    border-right: 2px solid var(--win98-raised-outer);
+    border-bottom: 2px solid var(--win98-raised-outer);
+}
+
+.taskbar-time {
+    background: var(--win98-surface);
+    border-left: 1px solid var(--win98-sunken-outer);
+    border-top: 1px solid var(--win98-sunken-outer);
+    border-right: 1px solid var(--win98-raised-outer);
+    border-bottom: 1px solid var(--win98-raised-outer);
+    padding: 2px 6px;
+    font-size: 11px;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Navigation Window */
+.nav-window {
+    position: fixed;
+    top: 40px;
+    left: 20px;
+    width: 300px;
+    height: 400px;
+    z-index: 100;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+    border-bottom: 1px dotted var(--win98-text-disabled);
+}
+
+.file-item:hover {
+    background: var(--win98-dialog-blue);
+    color: var(--win98-text-white);
+}
+
+.file-item:hover .file-date {
+    color: var(--win98-text-white);
+}
+
+.file-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+    margin-right: 8px;
+}
+
+.file-date {
+    font-size: 10px;
+    color: var(--win98-text-disabled);
+}
+
+/* Adjust main content for navigation window */
+#main-content {
+    margin-left: 340px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
+    max-width: calc(100% - 360px);
+}
+
+/* Single post adjustments */
+body.single #main-content {
+    margin-left: 20px;
+    max-width: calc(100% - 40px);
+}
+
+body.single .nav-window {
+    display: none;
+}
+
+/* Better window positioning */
+.window {
+    position: relative;
+    margin: 10px;
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+}
+
+.window.nav-window {
+    position: fixed;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #main-content {
+        margin: 10px;
+        max-width: calc(100% - 20px);
+    }
+    
+    .nav-window {
+        display: none;
+    }
+    
+    .window {
+        margin: 5px;
+    }
+    
+    .taskbar-time {
+        min-width: 50px;
+        font-size: 10px;
+    }
+    
+    .start-button {
+        padding: 2px 4px;
+        font-size: 10px;
+    }
+}
+
+/* File Explorer Styles */
+.file-explorer {
+    background: white;
+    border-left: 2px solid var(--win98-sunken-outer);
+    border-top: 2px solid var(--win98-sunken-outer);
+    border-right: 2px solid var(--win98-raised-outer);
+    border-bottom: 2px solid var(--win98-raised-outer);
+    padding: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.file-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 4px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.file-item:hover {
+    background: var(--win98-dialog-blue);
+    color: var(--win98-text-white);
+    border: 1px dotted var(--win98-text-white);
+}
+
+.file-item:hover .file-link,
+.file-item:hover .file-date,
+.file-item:hover .file-size,
+.file-item:hover .file-description {
+    color: var(--win98-text-white);
+}
+
+.file-icon {
+    margin-right: 8px;
+    font-size: 16px;
+    min-width: 20px;
+}
+
+.file-info {
+    flex: 1;
+}
+
+.file-link {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--win98-text);
+    font-size: 11px;
+}
+
+.file-meta {
+    font-size: 10px;
+    color: var(--win98-text-disabled);
+    margin-top: 2px;
+}
+
+.file-date, .file-size {
+    margin-right: 12px;
+}
+
+.file-description {
+    margin-top: 4px;
+    font-style: italic;
+    line-height: 1.3;
+}
+
+/* Scrollbar styling for file explorer */
+.file-explorer::-webkit-scrollbar {
+    width: 16px;
+}
+
+.file-explorer::-webkit-scrollbar-track {
+    background: var(--win98-surface);
+    border-left: 1px solid var(--win98-sunken-outer);
+    border-top: 1px solid var(--win98-sunken-outer);
+    border-right: 1px solid var(--win98-raised-outer);
+    border-bottom: 1px solid var(--win98-raised-outer);
+}
+
+.file-explorer::-webkit-scrollbar-thumb {
+    background: var(--win98-surface);
+    border-left: 1px solid var(--win98-raised-outer);
+    border-top: 1px solid var(--win98-raised-outer);
+    border-right: 1px solid var(--win98-sunken-outer);
+    border-bottom: 1px solid var(--win98-sunken-outer);
+}
+
+.file-explorer::-webkit-scrollbar-thumb:hover {
+    background: var(--win98-raised-outer);
+}
+
+@media (max-width: 1024px) {
+    .nav-window {
+        width: 250px;
+    }
+    
+    #main-content {
+        margin-left: 270px;
+        max-width: calc(100% - 290px);
+    }
 }

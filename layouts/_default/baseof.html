@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+    
+    <!-- Meta tags -->
+    {{ if .Description }}
+    <meta name="description" content="{{ .Description }}">
+    {{ else if .Summary }}
+    <meta name="description" content="{{ .Summary }}">
+    {{ else }}
+    <meta name="description" content="{{ .Site.Params.description }}">
+    {{ end }}
+    
+    {{ if .Params.tags }}
+    <meta name="keywords" content="{{ delimit .Params.tags ", " }}">
+    {{ end }}
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else if .Summary }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+</head>
+
+<body>
+    <!-- Windows 98 Desktop Background -->
+    <div id="desktop">
+        <!-- Taskbar -->
+        <div id="taskbar" class="taskbar">
+            <div class="start-button btn">
+                <strong>Start</strong>
+            </div>
+            <div class="taskbar-programs">
+                <div class="taskbar-program btn active">
+                    📝 {{ .Site.Title }}
+                </div>
+            </div>
+            <div class="taskbar-time">
+                <span id="current-time"></span>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div id="main-content">
+            {{- block "main" . }}{{- end }}
+        </div>
+        
+        <!-- Navigation Window (if not on single post) -->
+        {{ if not .IsPage }}
+        <div class="window nav-window">
+            <div class="title-bar">
+                <div class="title-bar-text">📁 Explorer - {{ .Site.Title }}</div>
+                <div class="title-bar-controls">
+                    <div class="title-bar-control">_</div>
+                    <div class="title-bar-control">□</div>
+                    <div class="title-bar-control">×</div>
+                </div>
+            </div>
+            
+            <div class="menu-bar">
+                <span class="menu-item"><u>F</u>ile</span>
+                <span class="menu-item"><u>E</u>dit</span>
+                <span class="menu-item"><u>V</u>iew</span>
+                <span class="menu-item"><u>G</u>o</span>
+                <span class="menu-item"><u>H</u>elp</span>
+            </div>
+            
+            <div class="window-body">
+                <h3>📂 Recent Posts</h3>
+                <ul class="file-list">
+                    {{ range first 10 .Site.RegularPages }}
+                    <li class="file-item">
+                        <a href="{{ .Permalink }}" class="file-link">
+                            📄 {{ .Title }}
+                        </a>
+                        <span class="file-date">{{ .Date.Format "2006-01-02" }}</span>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+            
+            <div class="status-bar">
+                <div class="status-field">{{ len .Site.RegularPages }} object(s)</div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+
+    <!-- JavaScript for clock -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // Update clock immediately and then every second
+        updateClock();
+        setInterval(updateClock, 1000);
+        
+        // Add some Windows 98 interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make windows draggable (basic implementation)
+            const titleBars = document.querySelectorAll('.title-bar');
+            titleBars.forEach(titleBar => {
+                titleBar.style.cursor = 'move';
+                titleBar.addEventListener('mousedown', function(e) {
+                    // Basic drag functionality would go here
+                    console.log('Window selected');
+                });
+            });
+            
+            // Button press effects
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', function() {
+                    this.style.borderLeft = '2px solid #808080';
+                    this.style.borderTop = '2px solid #808080';
+                    this.style.borderRight = '2px solid #dfdfdf';
+                    this.style.borderBottom = '2px solid #dfdfdf';
+                });
+                
+                btn.addEventListener('mouseup', function() {
+                    this.style.borderLeft = '2px solid #dfdfdf';
+                    this.style.borderTop = '2px solid #dfdfdf';
+                    this.style.borderRight = '2px solid #808080';
+                    this.style.borderBottom = '2px solid #808080';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.borderLeft = '2px solid #dfdfdf';
+                    this.style.borderTop = '2px solid #dfdfdf';
+                    this.style.borderRight = '2px solid #808080';
+                    this.style.borderBottom = '2px solid #808080';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

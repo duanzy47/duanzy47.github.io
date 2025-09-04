@@ -5,7 +5,13 @@ theme = "PaperMod"
 disqusShortname = "julian-10"
 
 [params]
+  description = "A retro Windows 98 style blog exploring history, culture, and ideas"
   disableSpecial1stPost = true
+  ShowToc = false
+  ShowPostNavLinks = true
+  ShowShareButtons = false
+  hideMeta = false
+  ShowBreadCrumbs = true
 
 [markup]
   [markup.goldmark]

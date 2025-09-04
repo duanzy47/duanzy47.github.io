@@ -1,0 +1,81 @@
+{{- define "main" }}
+
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">📁 {{ .Title }} - {{ .Site.Title }}</div>
+    <div class="title-bar-controls">
+      <div class="title-bar-control">_</div>
+      <div class="title-bar-control">□</div>
+      <div class="title-bar-control">×</div>
+    </div>
+  </div>
+  
+  <div class="menu-bar">
+    <span class="menu-item"><u>F</u>ile</span>
+    <span class="menu-item"><u>E</u>dit</span>
+    <span class="menu-item"><u>V</u>iew</span>
+    <span class="menu-item"><u>G</u>o</span>
+    <span class="menu-item"><u>H</u>elp</span>
+  </div>
+
+  <div class="window-body">
+    {{- if .IsHome }}
+    <div class="fieldset">
+      <legend>Welcome to {{ .Site.Title }}</legend>
+      <p>{{ .Site.Params.description | default "Welcome to my retro blog!" }}</p>
+    </div>
+    {{- end }}
+    
+    {{- if .Content }}
+    <div class="fieldset">
+      <legend>{{ .Title }}</legend>
+      {{ .Content }}
+    </div>
+    {{- end }}
+
+    <div class="fieldset">
+      <legend>📂 Blog Posts ({{ len .Pages }} files)</legend>
+      
+      {{- if .Pages }}
+      <div class="file-explorer">
+        {{- range .Pages }}
+        <div class="file-item">
+          <div class="file-icon">📄</div>
+          <div class="file-info">
+            <a href="{{ .Permalink }}" class="file-link">{{ .Title }}</a>
+            <div class="file-meta">
+              <span class="file-date">{{ .Date.Format "2006-01-02 15:04" }}</span>
+              <span class="file-size">{{ .WordCount }} words</span>
+              {{- if .Description }}
+              <div class="file-description">{{ .Description }}</div>
+              {{- else if .Summary }}
+              <div class="file-description">{{ .Summary | truncate 100 }}</div>
+              {{- end }}
+            </div>
+          </div>
+        </div>
+        {{- end }}
+      </div>
+      {{- else }}
+      <p>No files found in this directory.</p>
+      {{- end }}
+    </div>
+
+    {{- if .IsHome }}
+    <div class="fieldset">
+      <legend>ℹ️ System Information</legend>
+      <p><strong>Total Posts:</strong> {{ len .Site.RegularPages }}</p>
+      <p><strong>Last Updated:</strong> {{ now.Format "2006-01-02 15:04:05" }}</p>
+      <p><strong>Hugo Version:</strong> {{ hugo.Version }}</p>
+      <p><strong>Theme:</strong> Windows 98 Retro</p>
+    </div>
+    {{- end }}
+  </div>
+
+  <div class="status-bar">
+    <div class="status-field">{{ len .Pages }} object(s)</div>
+    <div class="status-field">{{ if .IsHome }}Home{{ else }}{{ .Title }}{{ end }}</div>
+  </div>
+</div>
+
+{{- end }}
