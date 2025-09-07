@@ -278,14 +278,20 @@ html, body {
     background-size: 32px 32px;
 }
 
-/* Windows XP Desktop Background */
+/* Windows XP Desktop Background - Classic "Bliss" Style */
 :root[data-theme="winxp"] html,
 :root[data-theme="winxp"] body {
-    background: #5a8bb0 !important;
-    background-image: 
-        radial-gradient(ellipse at center, #7db3d8 0%, #5a8bb0 70%),
-        linear-gradient(135deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%) !important;
-    background-size: 100% 100%, 20px 20px !important;
+    background: linear-gradient(135deg, 
+        #84c2ff 0%, 
+        #73c2fb 15%, 
+        #5cb3f0 30%, 
+        #4b9ee8 45%, 
+        #3c88d9 60%, 
+        #2d73ca 75%, 
+        #1e5ebb 90%, 
+        #0f49ac 100%) !important;
+    background-attachment: fixed !important;
+    background-size: 100% 100% !important;
 }
 
 /* Main content wrapper */
@@ -426,12 +432,31 @@ img {
 :root[data-theme="winxp"] .window {
     background: #ece9d8 !important;
     border: 1px solid #aca899 !important;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+    border-radius: 8px 8px 0 0 !important;
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(255,255,255,0.3) inset !important;
 }
 
 :root[data-theme="winxp"] #main-content {
     background: #ece9d8 !important;
     border: 1px solid #aca899 !important;
+    border-radius: 8px 8px 0 0 !important;
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(255,255,255,0.3) inset !important;
+}
+
+/* Windows XP Proper Taskbar Styling */
+:root[data-theme="winxp"] .taskbar {
+    background: linear-gradient(to top, 
+        #245edc 0%, 
+        #3671e7 25%, 
+        #4a84f2 50%, 
+        #5d97fd 75%, 
+        #70aaff 100%) !important;
+    border-top: 1px solid #2c5aa0 !important;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.2) !important;
 }
 
 .start-button {

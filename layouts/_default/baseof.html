@@ -137,7 +137,6 @@
             // Theme toggle event listener
             themeToggle.addEventListener('click', function() {
                 const currentTheme = root.getAttribute('data-theme');
-                console.log('Current theme:', currentTheme);
                 
                 if (currentTheme === 'winxp') {
                     // Switch to Windows 98
@@ -145,16 +144,13 @@
                     this.innerHTML = '🎨 WinXP';
                     this.title = 'Switch to Windows XP theme';
                     localStorage.setItem('windows-theme', 'win98');
-                    console.log('Switched to Windows 98');
                 } else {
                     // Switch to Windows XP
                     root.setAttribute('data-theme', 'winxp');
                     this.innerHTML = '🖥️ Win98';
                     this.title = 'Switch to Windows 98 theme';
                     localStorage.setItem('windows-theme', 'winxp');
-                    console.log('Switched to Windows XP');
                 }
-                console.log('New theme:', root.getAttribute('data-theme'));
             });
         }
         
