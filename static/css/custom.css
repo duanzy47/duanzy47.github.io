@@ -18,6 +18,25 @@
     --win98-red: #ff0000;
 }
 
+/* Windows XP Theme Variables */
+:root[data-theme="winxp"] {
+    /* Windows XP System Colors */
+    --win98-bg: #ece9d8;
+    --win98-surface: #ece9d8;
+    --win98-sunken-outer: #aca899;
+    --win98-sunken-inner: #716f64;
+    --win98-raised-outer: #ffffff;
+    --win98-raised-inner: #f1efe2;
+    --win98-window-frame: #0078d4;
+    --win98-dialog-blue: #0078d4;
+    --win98-text: #000000;
+    --win98-text-white: #ffffff;
+    --win98-text-disabled: #aca899;
+    --win98-yellow: #fff2cc;
+    --win98-green: #c6e9af;
+    --win98-red: #ffcccc;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -54,6 +73,19 @@ body {
     justify-content: space-between;
     align-items: center;
     font-size: 11px;
+}
+
+/* Windows XP Title Bar */
+:root[data-theme="winxp"] .title-bar {
+    background: linear-gradient(to bottom, #1f5cbb 0%, #245fdc 4%, #1850a2 6%, #1850a2 94%, #1850a2 96%, #245fdc 100%);
+    border-bottom: 1px solid #124898;
+    padding: 4px 6px;
+    height: 26px;
+    font-size: 12px;
+}
+
+:root[data-theme="winxp"] .title-bar-text {
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
 }
 
 .title-bar-text {
@@ -105,6 +137,28 @@ body {
     border-top: 2px solid var(--win98-sunken-inner);
     border-right: 2px solid var(--win98-raised-outer);
     border-bottom: 2px solid var(--win98-raised-outer);
+}
+
+/* Windows XP Button Styles */
+:root[data-theme="winxp"] .btn {
+    background: linear-gradient(to bottom, #faf8f4 0%, #f4f2ee 48%, #eae6de 49%, #e4dfd7 100%);
+    border: 1px solid #aca899;
+    border-radius: 2px;
+    padding: 4px 12px;
+    font-size: 11px;
+    text-shadow: none;
+    box-shadow: 0px 1px 0px rgba(255,255,255,0.5) inset;
+}
+
+:root[data-theme="winxp"] .btn:hover {
+    background: linear-gradient(to bottom, #fff 0%, #f8f6f2 48%, #f0ebe3 49%, #ece7df 100%);
+    border-color: #0078d4;
+}
+
+:root[data-theme="winxp"] .btn:active,
+:root[data-theme="winxp"] .btn:focus {
+    background: linear-gradient(to bottom, #e4dfd7 0%, #eae6de 51%, #f4f2ee 52%, #faf8f4 100%);
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.2) inset;
 }
 
 /* Input Field Styles */
@@ -222,6 +276,16 @@ html, body {
         radial-gradient(circle at 25% 25%, #40c0c0 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, #40c0c0 0%, transparent 50%);
     background-size: 32px 32px;
+}
+
+/* Windows XP Desktop Background */
+:root[data-theme="winxp"] html,
+:root[data-theme="winxp"] body {
+    background: #5a8bb0;
+    background-image: 
+        radial-gradient(ellipse at center, #7db3d8 0%, #5a8bb0 70%),
+        linear-gradient(135deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%);
+    background-size: 100% 100%, 20px 20px;
 }
 
 /* Main content wrapper */
@@ -350,11 +414,36 @@ img {
     z-index: 1000;
 }
 
+/* Windows XP Taskbar */
+:root[data-theme="winxp"] .taskbar {
+    height: 30px;
+    background: linear-gradient(to top, #245fdc 0%, #3f7cdb 12%, #4f88dd 25%, #5f94df 37%, #6ba0e2 50%, #79ace4 62%, #87b8e6 75%, #95c4e8 87%, #a3d0ea 100%);
+    border-top: 1px solid #2c5aa0;
+    padding: 2px 4px;
+}
+
 .start-button {
     height: 22px;
     font-size: 11px;
     margin-right: 4px;
     padding: 2px 6px;
+}
+
+/* Windows XP Start Button */
+:root[data-theme="winxp"] .start-button {
+    height: 24px;
+    background: linear-gradient(to bottom, #4db253 0%, #4db253 20%, #41a047 21%, #41a047 79%, #388e3c 80%, #388e3c 100%);
+    border: 1px solid #2e7d32;
+    border-radius: 0 8px 8px 0;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+    padding: 4px 12px;
+    margin-right: 6px;
+}
+
+:root[data-theme="winxp"] .start-button:hover {
+    background: linear-gradient(to bottom, #66bb6a 0%, #66bb6a 20%, #4caf50 21%, #4caf50 79%, #43a047 80%, #43a047 100%);
 }
 
 .taskbar-programs {
@@ -380,6 +469,23 @@ img {
     border-top: 2px solid var(--win98-sunken-inner);
     border-right: 2px solid var(--win98-raised-outer);
     border-bottom: 2px solid var(--win98-raised-outer);
+}
+
+.theme-switcher {
+    margin-right: 8px;
+}
+
+.theme-switcher .btn {
+    height: 22px;
+    font-size: 10px;
+    margin: 0;
+    padding: 2px 4px;
+}
+
+:root[data-theme="winxp"] .theme-switcher .btn {
+    height: 24px;
+    font-size: 10px;
+    padding: 3px 6px;
 }
 
 .taskbar-time {

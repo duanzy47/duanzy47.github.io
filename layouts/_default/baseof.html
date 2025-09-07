@@ -49,6 +49,11 @@
                     📝 {{ .Site.Title }}
                 </div>
             </div>
+            <div class="theme-switcher">
+                <button id="theme-toggle" class="btn" title="Switch between Windows 98 and Windows XP themes">
+                    🎨 Theme
+                </button>
+            </div>
             <div class="taskbar-time">
                 <span id="current-time"></span>
             </div>
@@ -100,7 +105,7 @@
         {{ end }}
     </div>
 
-    <!-- JavaScript for clock -->
+    <!-- JavaScript for clock and theme switching -->
     <script>
         function updateClock() {
             const now = new Date();
@@ -112,12 +117,52 @@
             document.getElementById('current-time').textContent = timeString;
         }
         
+        // Theme switching functionality
+        function initThemeSwitcher() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const root = document.documentElement;
+            
+            // Load saved theme from localStorage
+            const savedTheme = localStorage.getItem('windows-theme') || 'win98';
+            if (savedTheme === 'winxp') {
+                root.setAttribute('data-theme', 'winxp');
+                themeToggle.innerHTML = '🖥️ Win98';
+                themeToggle.title = 'Switch to Windows 98 theme';
+            } else {
+                root.removeAttribute('data-theme');
+                themeToggle.innerHTML = '🎨 WinXP';
+                themeToggle.title = 'Switch to Windows XP theme';
+            }
+            
+            // Theme toggle event listener
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = root.getAttribute('data-theme');
+                
+                if (currentTheme === 'winxp') {
+                    // Switch to Windows 98
+                    root.removeAttribute('data-theme');
+                    this.innerHTML = '🎨 WinXP';
+                    this.title = 'Switch to Windows XP theme';
+                    localStorage.setItem('windows-theme', 'win98');
+                } else {
+                    // Switch to Windows XP
+                    root.setAttribute('data-theme', 'winxp');
+                    this.innerHTML = '🖥️ Win98';
+                    this.title = 'Switch to Windows 98 theme';
+                    localStorage.setItem('windows-theme', 'winxp');
+                }
+            });
+        }
+        
         // Update clock immediately and then every second
         updateClock();
         setInterval(updateClock, 1000);
         
-        // Add some Windows 98 interactivity
+        // Add some Windows 98/XP interactivity
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme switcher
+            initThemeSwitcher();
+            
             // Make windows draggable (basic implementation)
             const titleBars = document.querySelectorAll('.title-bar');
             titleBars.forEach(titleBar => {
@@ -128,28 +173,37 @@
                 });
             });
             
-            // Button press effects
+            // Button press effects (only for non-XP themes)
             const buttons = document.querySelectorAll('.btn');
             buttons.forEach(btn => {
+                // Skip theme effects for XP styled buttons
+                if (btn.id === 'theme-toggle') return;
+                
                 btn.addEventListener('mousedown', function() {
-                    this.style.borderLeft = '2px solid #808080';
-                    this.style.borderTop = '2px solid #808080';
-                    this.style.borderRight = '2px solid #dfdfdf';
-                    this.style.borderBottom = '2px solid #dfdfdf';
+                    if (!document.documentElement.getAttribute('data-theme')) {
+                        this.style.borderLeft = '2px solid #808080';
+                        this.style.borderTop = '2px solid #808080';
+                        this.style.borderRight = '2px solid #dfdfdf';
+                        this.style.borderBottom = '2px solid #dfdfdf';
+                    }
                 });
                 
                 btn.addEventListener('mouseup', function() {
-                    this.style.borderLeft = '2px solid #dfdfdf';
-                    this.style.borderTop = '2px solid #dfdfdf';
-                    this.style.borderRight = '2px solid #808080';
-                    this.style.borderBottom = '2px solid #808080';
+                    if (!document.documentElement.getAttribute('data-theme')) {
+                        this.style.borderLeft = '2px solid #dfdfdf';
+                        this.style.borderTop = '2px solid #dfdfdf';
+                        this.style.borderRight = '2px solid #808080';
+                        this.style.borderBottom = '2px solid #808080';
+                    }
                 });
                 
                 btn.addEventListener('mouseleave', function() {
-                    this.style.borderLeft = '2px solid #dfdfdf';
-                    this.style.borderTop = '2px solid #dfdfdf';
-                    this.style.borderRight = '2px solid #808080';
-                    this.style.borderBottom = '2px solid #808080';
+                    if (!document.documentElement.getAttribute('data-theme')) {
+                        this.style.borderLeft = '2px solid #dfdfdf';
+                        this.style.borderTop = '2px solid #dfdfdf';
+                        this.style.borderRight = '2px solid #808080';
+                        this.style.borderBottom = '2px solid #808080';
+                    }
                 });
             });
         });
