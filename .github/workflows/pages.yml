@@ -6,6 +6,9 @@ on:
   push:
     branches: ["master"]
 
+  # Build pull requests for preview
+  pull_request:
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
