@@ -58,7 +58,17 @@
                 <span id="current-time"></span>
             </div>
         </div>
-        
+
+        <!-- Start Menu (hidden by default) -->
+        <div id="start-menu" class="start-menu">
+            <ul class="menu-list">
+                <li class="menu-item">Programs</li>
+                <li class="menu-item">Documents</li>
+                <li class="menu-item">Settings</li>
+                <li class="menu-item">Run...</li>
+            </ul>
+        </div>
+
         <!-- Main Content Area -->
         <div id="main-content">
             {{- block "main" . }}{{- end }}
@@ -162,7 +172,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize theme switcher
             initThemeSwitcher();
-            
+
+            // Start menu toggle
+            const startButton = document.querySelector('.start-button');
+            const startMenu = document.getElementById('start-menu');
+
+            startButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isVisible = startMenu.style.display === 'block';
+                startMenu.style.display = isVisible ? 'none' : 'block';
+            });
+
+            startMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            document.addEventListener('click', function() {
+                startMenu.style.display = 'none';
+            });
+
             // Make windows draggable (basic implementation)
             const titleBars = document.querySelectorAll('.title-bar');
             titleBars.forEach(titleBar => {
