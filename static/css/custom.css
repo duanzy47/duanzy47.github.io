@@ -278,20 +278,13 @@ html, body {
     background-size: 32px 32px;
 }
 
-/* Windows XP Desktop Background - Classic "Bliss" Style */
+/* Windows XP Desktop Background - Classic "Bliss" Wallpaper */
 :root[data-theme="winxp"] html,
 :root[data-theme="winxp"] body {
-    background: linear-gradient(135deg, 
-        #84c2ff 0%, 
-        #73c2fb 15%, 
-        #5cb3f0 30%, 
-        #4b9ee8 45%, 
-        #3c88d9 60%, 
-        #2d73ca 75%, 
-        #1e5ebb 90%, 
-        #0f49ac 100%) !important;
-    background-attachment: fixed !important;
-    background-size: 100% 100% !important;
+    background: url('https://archive.org/download/windows-xp-bliss-4k-lu-3840x2400/windows_xp_bliss_4k_lu-3840x2400.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+    /* Fallback gradient if image fails to load */
+    background-color: #84c2ff !important;
 }
 
 /* Main content wrapper */
